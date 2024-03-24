@@ -1,0 +1,31 @@
+﻿@model IEnumerable<ToDoListApp.Models.ToDoItem>
+
+<h2>To-Do List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Is Complete</th>
+            <th>Due Date</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.IsComplete)</td>
+                <td>@Html.DisplayFor(modelItem => item.DueDate)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }), new {onclick="return confirm('Are you sure you want to delete this?')"}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")">Add New To-Do Item</a>
+
